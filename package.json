@@ -1,0 +1,21 @@
+{
+  "name": "aoc",
+  "esy": {
+    "build": "dune build -p aoc"
+  },
+  "scripts": {
+    "test": "dune runtest",
+    "run": "esy x aoc2020"
+  },
+  "dependencies": {
+    "ocaml": "4.13.x",
+    "@opam/dune": "*",
+    "@opam/ounit2": "*"
+  },
+  "devDependencies": {
+    "@opam/utop": "*",
+    "@opam/ocaml-lsp-server": "*",
+    "@opam/ocamlformat": "*",
+    "@opam/merlin": "*"
+  }
+}
