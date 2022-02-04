@@ -1,3 +1,2 @@
-
-_esy/default
-node_modules/.cache/_esy/build/bin
+_esy/
+node_modules/
