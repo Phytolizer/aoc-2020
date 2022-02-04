@@ -1,2 +1,2 @@
-(executable
-  (name day01))
+(library
+ (name day01))

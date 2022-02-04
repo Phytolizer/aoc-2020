@@ -1,11 +1,12 @@
 {
   "name": "aoc",
   "esy": {
-    "build": "dune build -p aoc"
+    "build": "dune build -p aoc",
+    "buildDev": "dune build --root . --only-package #{self.name}"
   },
   "scripts": {
     "test": "dune runtest",
-    "day01": "esy x day01"
+    "run": "esy aoc"
   },
   "dependencies": {
     "ocaml": "4.13.x",
