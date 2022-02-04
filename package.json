@@ -5,7 +5,7 @@
   },
   "scripts": {
     "test": "dune runtest",
-    "run": "esy x aoc2020"
+    "day01": "esy x day01"
   },
   "dependencies": {
     "ocaml": "4.13.x",
