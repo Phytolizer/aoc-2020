@@ -6,7 +6,7 @@
   },
   "scripts": {
     "test": "dune runtest",
-    "run": "esy aoc"
+    "run": "esy dune exec aoc"
   },
   "dependencies": {
     "ocaml": "4.13.x",
