@@ -1,0 +1,1 @@
+set makeprg=dotnet\ build
