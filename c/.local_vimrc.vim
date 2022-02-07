@@ -1,1 +1,1 @@
-set makeprg=ninja\ -C\ build
+set makeprg=ninja\ -C\ build\ &&\ build/aoc2020

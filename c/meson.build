@@ -3,6 +3,7 @@ project('aoc2020', 'c', 'cpp',
   default_options : ['warning_level=3', 'default_library=static'])
 
 exe = executable('aoc2020', 'aoc2020.c',
+                            'simple_flags.c',
   install : true)
 
 test('basic', exe)
