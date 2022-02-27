@@ -29,7 +29,7 @@ public class Program
             Environment.Exit(1);
         }
 
-        Input ??= $"{Day}/input.txt";
+        Input ??= $"Day{Day:00}/input.txt";
 
         if (Day == 0)
         {
