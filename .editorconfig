@@ -1,6 +1,7 @@
 [*]
 trim_trailing_whitespace = true
 insert_final_newline = true
+charset = utf-8
 
 [*.{ml,mli}]
 indent_style = space
