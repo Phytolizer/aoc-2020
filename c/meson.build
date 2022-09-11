@@ -1,9 +1,22 @@
-project('aoc2020', 'c', 'cpp',
+project(
+  'aoc2020',
+  'c',
   version : '0.1.0',
-  default_options : ['warning_level=3', 'default_library=static'])
+  default_options : [
+    'warning_level=3',
+    'default_library=static',
+    'c_std=c99',
+  ],
+)
 
-exe = executable('aoc2020', 'aoc2020.c',
-                            'simple_flags.c',
-  install : true)
+hedley_proj = subproject('hedley')
+hedley_dep = hedley_proj.get_variable('hedley_dep')
 
-test('basic', exe)
+exe = executable(
+  'aoc2020',
+    'aoc2020.c',
+    'simple_flags.c',
+  dependencies : [
+    hedley_dep,
+  ],
+)

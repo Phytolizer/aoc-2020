@@ -1,19 +1,18 @@
+#include "simple_flags.h"
+
 #include <assert.h>
 #include <errno.h>
+#include <hedley.h>
 #include <inttypes.h>
 #include <stddef.h>
 #include <stdio.h>
-
-// for strtoll()
-#define _ISOC99_SOURCE
 #include <stdlib.h>
 #include <string.h>
-
-#include "simple_flags.h"
 
 typedef enum {
     FLAG_I64,
     FLAG_STR,
+    FLAG_BOOL,
 } flag_type_t;
 
 typedef struct {
@@ -23,10 +22,12 @@ typedef struct {
     union {
         int64_t* pi64;
         const char** pstr;
+        bool* pb;
     } location;
     union {
         int64_t i64;
         const char* str;
+        bool b;
     } default_value;
 } flag_t;
 
@@ -75,6 +76,16 @@ void flag_str(struct flags* flags, const char** location, const char* name,
                          description,
                          {.pstr = location},
                          {.str = *location},
+                     });
+}
+
+void flag_bool(struct flags* flags, bool* location, const char* name, const char* description) {
+    push_flag(flags, (flag_t){
+                         FLAG_BOOL,
+                         name,
+                         description,
+                         {.pb = location},
+                         {.b = *location},
                      });
 }
 
@@ -128,6 +139,9 @@ int flag_parse(struct flags* flags, int argc, char** argv) {
 
         const char* value = args_peek(&args);
         if (value == NULL || value[0] == '-') {
+            if (flag->type == FLAG_BOOL) {
+                *flag->location.pb = true;
+            }
             continue;
         }
         args_next(&args);
@@ -148,6 +162,17 @@ int flag_parse(struct flags* flags, int argc, char** argv) {
             case FLAG_STR:
                 *flag->location.pstr = value;
                 break;
+            case FLAG_BOOL:
+                if (strcmp(value, "true") == 0) {
+                    *flag->location.pb = true;
+                } else if (strcmp(value, "false") == 0) {
+                    *flag->location.pb = false;
+                } else {
+                    flag_print_help(flags, program_name, stderr);
+                    fprintf(stderr, "ERROR: invalid value for bool: %s\n", value);
+                    exit(EXIT_FAILURE);
+                }
+                break;
         }
     }
 }
@@ -166,6 +191,9 @@ void flag_print_help(const struct flags* flags, const char* program_name, FILE* 
                 break;
             case FLAG_STR:
                 fprintf(stream, "%s", flag->default_value.str);
+                break;
+            case FLAG_BOOL:
+                fprintf(stream, "%s", flag->default_value.b ? "true" : "false");
                 break;
         }
         fprintf(stream, ")\n");
