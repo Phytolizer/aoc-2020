@@ -9,6 +9,28 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct {
+    bool ok;
+    bool value;
+} bool_of_str_result_t;
+
+static bool_of_str_result_t bool_of_str(const char* str) {
+    if (strcmp(str, "true") == 0) {
+        return (bool_of_str_result_t){.ok = true, .value = true};
+    }
+    if (strcmp(str, "false") == 0) {
+        return (bool_of_str_result_t){.ok = true, .value = false};
+    }
+    return (bool_of_str_result_t){.ok = false};
+}
+
+static const char* str_of_bool(bool b) {
+    if (b) {
+        return "true";
+    }
+    return "false";
+}
+
 typedef enum {
     FLAG_I64,
     FLAG_STR,
@@ -162,17 +184,16 @@ int flag_parse(struct flags* flags, int argc, char** argv) {
             case FLAG_STR:
                 *flag->location.pstr = value;
                 break;
-            case FLAG_BOOL:
-                if (strcmp(value, "true") == 0) {
-                    *flag->location.pb = true;
-                } else if (strcmp(value, "false") == 0) {
-                    *flag->location.pb = false;
+            case FLAG_BOOL: {
+                bool_of_str_result_t result = bool_of_str(value);
+                if (result.ok) {
+                    *flag->location.pb = result.value;
                 } else {
                     flag_print_help(flags, program_name, stderr);
                     fprintf(stderr, "ERROR: invalid value for bool: %s\n", value);
                     exit(EXIT_FAILURE);
                 }
-                break;
+            } break;
         }
     }
 }
@@ -193,7 +214,7 @@ void flag_print_help(const struct flags* flags, const char* program_name, FILE* 
                 fprintf(stream, "%s", flag->default_value.str);
                 break;
             case FLAG_BOOL:
-                fprintf(stream, "%s", flag->default_value.b ? "true" : "false");
+                fprintf(stream, "%s", str_of_bool(flag->default_value.b));
                 break;
         }
         fprintf(stream, ")\n");

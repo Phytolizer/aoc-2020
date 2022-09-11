@@ -15,7 +15,11 @@ hedley_dep = hedley_proj.get_variable('hedley_dep')
 exe = executable(
   'aoc2020',
     'aoc2020.c',
+    'alloc_printf.c',
     'simple_flags.c',
+    'slurp.c',
+    'strtok_reentrant.c',
+    'day01.c',
   dependencies : [
     hedley_dep,
   ],
