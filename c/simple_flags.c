@@ -67,7 +67,9 @@ static void push_flag(flags_t* flags, flag_t flag) {
             perror("push_flag");
             exit(EXIT_FAILURE);
         }
-        memcpy(new_data, flags->data, flags->length * sizeof(flag_t));
+        if (flags->data != NULL) {
+            memcpy(new_data, flags->data, flags->length * sizeof(flag_t));
+        }
         free(flags->data);
         flags->data = new_data;
     }
