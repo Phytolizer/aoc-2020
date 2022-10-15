@@ -18,8 +18,10 @@ executable(
     'alloc_printf.c',
     'simple_flags.c',
     'slurp.c',
+    'strdup_std.c',
     'strtok_reentrant.c',
     'day01.c',
+    'day02.c',
     dependencies: [
         hedley_dep,
     ],
