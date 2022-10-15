@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SLURP_H_
+#define SLURP_H_
 
 typedef struct {
     char* value;
@@ -6,3 +7,5 @@ typedef struct {
 } slurp_result_t;
 
 slurp_result_t slurp_file(const char* path);
+
+#endif  // SLURP_H_

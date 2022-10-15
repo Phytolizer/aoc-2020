@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SIMPLE_FLAGS_H_
+#define SIMPLE_FLAGS_H_
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -18,3 +19,5 @@ int flag_parse(struct flags* flags, int argc, char** argv);
 void flag_print_help(const struct flags* flags, const char* program_name, FILE* stream);
 
 void flag_free(struct flags* flags);
+
+#endif  // SIMPLE_FLAGS_H_

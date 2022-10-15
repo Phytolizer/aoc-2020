@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DYARRAY_H_
+#define DYARRAY_H_
 
 #include <stddef.h>
 #include <stdlib.h>
@@ -36,3 +37,5 @@
         (array).size = 0;     \
         (array).capacity = 0; \
     } while (0)
+
+#endif  // DYARRAY_H_
