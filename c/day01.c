@@ -44,8 +44,10 @@ int day01(const char* input_file) {
     for (size_t i = 0; i < values.size; i++) {
         for (size_t j = i + 1; j < values.size; j++) {
             if (values.data[i] + values.data[j] == 2020) {
-                printf("Part 1: %ld * %ld = %ld\n", values.data[i], values.data[j],
-                       values.data[i] * values.data[j]);
+                printf(
+                    "Part 1: %ld * %ld = %ld\n", values.data[i], values.data[j],
+                    values.data[i] * values.data[j]
+                );
             }
         }
     }
@@ -55,8 +57,10 @@ int day01(const char* input_file) {
         for (size_t j = i + 1; j < values.size; j++) {
             for (size_t k = j + 1; k < values.size; k++) {
                 if (values.data[i] + values.data[j] + values.data[k] == 2020) {
-                    printf("Part 2: %ld * %ld * %ld = %ld\n", values.data[i], values.data[j],
-                           values.data[k], values.data[i] * values.data[j] * values.data[k]);
+                    printf(
+                        "Part 2: %ld * %ld * %ld = %ld\n", values.data[i], values.data[j],
+                        values.data[k], values.data[i] * values.data[j] * values.data[k]
+                    );
                 }
             }
         }

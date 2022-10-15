@@ -24,8 +24,9 @@ typedef struct {
 
 static platform_file_t platform_fopen(const char* path) {
 #ifdef _WIN32
-    HANDLE handle = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
-                                FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE handle = CreateFileA(
+        path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL
+    );
     return (platform_file){
         .handle = handle,
         .valid = handle != INVALID_HANDLE_VALUE,

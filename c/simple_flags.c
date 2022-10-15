@@ -83,34 +83,44 @@ struct flags* flag_init(void) {
 }
 
 void flag_int64(struct flags* flags, int64_t* location, const char* name, const char* description) {
-    push_flag(flags, (flag_t){
-                         FLAG_I64,
-                         name,
-                         description,
-                         {.pi64 = location},
-                         {.i64 = *location},
-                     });
+    push_flag(
+        flags,
+        (flag_t){
+            FLAG_I64,
+            name,
+            description,
+            {.pi64 = location},
+            {.i64 = *location},
+        }
+    );
 }
 
-void flag_str(struct flags* flags, const char** location, const char* name,
-              const char* description) {
-    push_flag(flags, (flag_t){
-                         FLAG_STR,
-                         name,
-                         description,
-                         {.pstr = location},
-                         {.str = *location},
-                     });
+void flag_str(
+    struct flags* flags, const char** location, const char* name, const char* description
+) {
+    push_flag(
+        flags,
+        (flag_t){
+            FLAG_STR,
+            name,
+            description,
+            {.pstr = location},
+            {.str = *location},
+        }
+    );
 }
 
 void flag_bool(struct flags* flags, bool* location, const char* name, const char* description) {
-    push_flag(flags, (flag_t){
-                         FLAG_BOOL,
-                         name,
-                         description,
-                         {.pb = location},
-                         {.b = *location},
-                     });
+    push_flag(
+        flags,
+        (flag_t){
+            FLAG_BOOL,
+            name,
+            description,
+            {.pb = location},
+            {.b = *location},
+        }
+    );
 }
 
 typedef struct {
