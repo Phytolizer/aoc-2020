@@ -16,21 +16,25 @@ int main(int argc, char** argv) {
     if (endp < argc) {
         flag_print_help(flags, argv[0], stderr);
         fprintf(stderr, "ERROR: found dangling arguments, starting with '%s'\n", argv[endp]);
+        flag_free(flags);
         return EXIT_FAILURE;
     }
     if (help) {
         flag_print_help(flags, argv[0], stdout);
+        flag_free(flags);
         return EXIT_SUCCESS;
     }
 
     if (day == 0) {
         flag_print_help(flags, argv[0], stderr);
         fprintf(stderr, "ERROR: day must be set\n");
+        flag_free(flags);
         return EXIT_FAILURE;
     }
     if (day < 0 || day > 25) {
         flag_print_help(flags, argv[0], stderr);
         fprintf(stderr, "ERROR: day must be between 1 and 25\n");
+        flag_free(flags);
         return EXIT_FAILURE;
     }
     flag_free(flags);
