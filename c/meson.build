@@ -22,6 +22,7 @@ executable(
     'strtok_reentrant.c',
     'day01.c',
     'day02.c',
+    'day03.c',
     dependencies: [
         hedley_dep,
     ],

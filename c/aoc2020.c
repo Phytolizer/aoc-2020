@@ -3,6 +3,7 @@
 
 #include "day01.h"
 #include "day02.h"
+#include "day03.h"
 #include "simple_flags.h"
 
 int main(int argc, char** argv) {
@@ -48,6 +49,8 @@ int main(int argc, char** argv) {
             return day01(input_file_path);
         case 2:
             return day02(input_file_path);
+        case 3:
+            return day03(input_file_path);
         default:
             fprintf(stderr, "ERROR: day %" PRId64 " is not implemented\n", day);
             return EXIT_FAILURE;
