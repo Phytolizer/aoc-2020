@@ -47,7 +47,7 @@ int day03(const char* input_file) {
         DYARRAY_PUSH(&lines, line);
     }
 
-    printf("Part 1: %zu\n", count_trees(lines, (Slope){3, 1}));
+    printf("Part 1: %zu\n", count_trees(lines, (Slope){.dx = 3, .dy = 1}));
 
     Slope slopes[] = {
         {.dx = 1, .dy = 1}, {.dx = 3, .dy = 1}, {.dx = 5, .dy = 1},
